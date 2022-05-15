@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import navBack from "../Images/navback.png";
 const Wrap = styled.div`
@@ -42,13 +43,17 @@ function Nav() {
       <BackGround bgphoto={navBack} />
       <Ul>
         <div>
-          <Li>TOP</Li>
+          <Link to="/">
+            <Li>TOP</Li>
+          </Link>
+        </div>
+        <div>
+          <Link to="/monster">
+            <Li>MONSTER</Li>
+          </Link>
         </div>
         <div>
           <Li>WORLD</Li>
-        </div>
-        <div>
-          <Li>MOVIE</Li>
         </div>
         <div>
           <Li>SEARCH</Li>
