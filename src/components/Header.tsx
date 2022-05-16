@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Search from "./Search";
 const Wrap = styled.div``;
 const Nav = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ function Header() {
           </Li>
         </Ul>
       </Nav>
+      <Search />
     </Wrap>
   );
 }

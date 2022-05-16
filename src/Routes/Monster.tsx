@@ -55,7 +55,7 @@ function Monster() {
     "monsters",
     getMonster
   );
-
+  console.log(Monster?.data.length);
   return (
     <>
       {Ml ? (
