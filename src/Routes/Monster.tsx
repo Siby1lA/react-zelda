@@ -9,7 +9,8 @@ const Wrap = styled.div``;
 const BackGround = styled.div<{ bgphoto: string }>`
   background-image: url(${(props) => props.bgphoto});
   width: 100vw;
-  height: 80vh;
+  height: fit-content;
+  padding-bottom: 30px;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -24,7 +25,7 @@ const HeaderLogo = styled.div`
 const Contents = styled.div`
   padding: 10px;
   width: 1000px;
-  height: 600px;
+  height: 70vh;
   background-color: aliceblue;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

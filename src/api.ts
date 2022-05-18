@@ -5,3 +5,8 @@ export function getMonster() {
     response.json()
   );
 }
+export function getMonsterSearch(search: string) {
+  return fetch(`${BASE_PATH}/entry/${search}`).then((response) =>
+    response.json()
+  );
+}

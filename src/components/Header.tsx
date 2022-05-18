@@ -1,7 +1,31 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Search from "./Search";
+import { motion } from "framer-motion";
+const Overlay = styled(motion.div)`
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* opacity: 0; */
+`;
+const Searchwrap = styled(motion.div)`
+  color: white;
+  width: 100%;
+  height: 450px;
+  background-color: whitesmoke;
+  position: absolute;
+  z-index: 1;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  /* opacity: 0; */
+`;
+const InputWrap = styled.div``;
 const Wrap = styled.div``;
-const Nav = styled.div`
+const Nav = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,12 +58,33 @@ const Li = styled.li`
       fill: tomato;
     }
   }
+
   span {
     font-size: 12px;
     margin-top: 2px;
   }
 `;
+const SearchHover = styled.div``;
+const Hover = styled(motion.div)``;
+const anime = {
+  hidden: {
+    opacity: 0,
+    transition: {
+      type: "tween",
+      duration: 1,
+    },
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      type: "tween",
+      duration: 1,
+    },
+  },
+};
 function Header() {
+  const [hover, setHover] = useState<boolean>(false);
+
   return (
     <Wrap>
       <Nav>
@@ -49,7 +94,7 @@ function Header() {
           }
         />
         <Ul>
-          <Li>
+          <Li onMouseOver={() => setHover(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z" />
             </svg>
@@ -69,7 +114,23 @@ function Header() {
           </Li>
         </Ul>
       </Nav>
-      <Search />
+
+      {hover ? (
+        <>
+          <Overlay
+            onMouseOver={() =>
+              setTimeout(() => {
+                setHover(false);
+              }, 1000)
+            }
+          />
+          <Searchwrap>
+            <InputWrap>
+              <Search />
+            </InputWrap>
+          </Searchwrap>
+        </>
+      ) : null}
     </Wrap>
   );
 }
