@@ -2,6 +2,18 @@ import { PathMatch, useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AnimatePresence, motion, useViewportScroll } from "framer-motion";
 import { useState } from "react";
+import trailerBack1 from "../Images/movie_thumb_01.jpg";
+import trailerBack2 from "../Images/movie_thumb_02.jpg";
+import trailerBack3 from "../Images/movie_thumb_03.jpg";
+const trailerDatas = {
+  back: [trailerBack1, trailerBack2, trailerBack3],
+  url: [
+    "https://www.youtube.com/embed/GjPidZXIuzs",
+    "https://www.youtube.com/embed/c6zihcUDj6Y",
+    "https://www.youtube.com/embed/1yIHLQJNvDw",
+  ],
+};
+
 const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
@@ -19,7 +31,7 @@ const ModalWrap = styled.div`
 const Contents = styled(motion.div)`
   position: absolute;
   width: 760px;
-  height: 630px;
+  height: auto;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -30,19 +42,37 @@ const Contents = styled(motion.div)`
   align-items: center;
 `;
 const Iframe = styled.iframe`
-  width: 750px;
-  height: 422px;
+  width: 1000px;
+  height: 565px;
 `;
 const Movies = styled.div`
-  width: 750px;
+  width: 1000px;
   color: #fff3de;
   font-size: 18px;
   display: flex;
   justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #fff3de;
 `;
 const MoviesBox = styled.div`
-  width: 235px;
+  width: 300px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  &:hover {
+    border-top: 2px solid #0d5776;
+  }
 `;
+const TrailerImg = styled.div<{ bgphoto: string }>`
+  background-image: url(${(props) => props.bgphoto});
+  width: 180px;
+  height: 100px;
+  background-size: cover;
+  background-position: center center;
+`;
+
 function TrailerModal() {
   const [movies, setMovies] = useState(
     "https://www.youtube.com/embed/GjPidZXIuzs"
@@ -55,11 +85,15 @@ function TrailerModal() {
   const onOverlayClick = () => {
     navigate("/");
   };
+  const ChangeTrailer = (index: number) => {
+    setMovies(trailerDatas.url[index]);
+  };
   return (
     <>
       {clicked && (
         <AnimatePresence>
           <Overlay
+            key={1}
             onClick={onOverlayClick}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -67,23 +101,22 @@ function TrailerModal() {
           />
           <ModalWrap>
             <Contents
+              key={2}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ type: "tween", duration: 1 }}
-              style={{ top: scrollY.get() + 80 }}
+              style={{ top: scrollY.get() + 60 }}
             >
               <Iframe src={movies}></Iframe>
               <Movies>
-                <MoviesBox>
-                  <span>1ST TRAILER</span>
-                </MoviesBox>
-                <MoviesBox>
-                  <span>2ST TRAILER</span>
-                </MoviesBox>
-                <MoviesBox>
-                  <span>3ST TRAILER</span>
-                </MoviesBox>
+                {trailerDatas.back.map((val: any, index) => (
+                  <MoviesBox key={index} onClick={() => ChangeTrailer(index)}>
+                    <TrailerImg bgphoto={val}></TrailerImg>
+                    <div>{index + 1}ST TRAILER</div>
+                  </MoviesBox>
+                ))}
               </Movies>
+              <div style={{ height: "30px" }}></div>
             </Contents>
           </ModalWrap>
         </AnimatePresence>

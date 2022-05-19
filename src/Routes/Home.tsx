@@ -4,10 +4,6 @@ import logo_switch from "../Images/logo_switch.png";
 import logo_wiiu from "../Images/logo_wiiu.png";
 import { useNavigate } from "react-router-dom";
 import TrailerModal from "../components/TrailerModal";
-import { useQuery } from "react-query";
-import { getMonsterSearch } from "../api";
-import { useRecoilValue } from "recoil";
-import { monsterSearch } from "../atoms";
 
 const Wrap = styled.div``;
 const BackGround = styled.div<{ bgphoto: string }>`

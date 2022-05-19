@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { monsterSearch } from "../atoms";
 import { useQuery } from "react-query";
 import { getMonsterSearch } from "../api";
+import React, { useDebugValue } from "react";
 
 const Wrap = styled.div`
   display: flex;
@@ -39,12 +40,17 @@ function Search() {
     value ? ["search", value] : "",
     () => value && getMonsterSearch(value ? value : "")
   );
+  let timer: any = null;
   const onChange = (e: any) => {
-    setValue(e.target.value);
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      setValue(e.target.value);
+    }, 1000);
   };
   const onSubmit = (e: any) => {
     e.preventDefault();
   };
+  console.log(value);
   return (
     <>
       <Wrap>
@@ -55,18 +61,21 @@ function Search() {
             type="text"
           ></input>
         </Form>
-        {data && (
+        {data ? (
           <>
             <MonsterImg bgphoto={data?.data.image}></MonsterImg>
+            <div>{data?.data.name}</div>
             {data?.data.common_locations?.map((val: string) => (
               <div key={val}>{val}</div>
             ))}
-            <div>{data?.data.name}</div>
+
             <div>{data?.data.description}</div>
           </>
+        ) : (
+          <div>Searching...</div>
         )}
       </Wrap>
     </>
   );
 }
-export default Search;
+export default React.memo(Search);

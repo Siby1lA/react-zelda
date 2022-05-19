@@ -60,7 +60,7 @@ function Monster() {
   return (
     <>
       {Ml ? (
-        <div>Loading...</div>
+        <div style={{ color: "whitesmoke" }}>Loading...</div>
       ) : (
         <>
           <Wrap>
