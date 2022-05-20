@@ -19,7 +19,7 @@ const Overlay = styled(motion.div)`
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
 `;
 const ModalWrap = styled.div`
@@ -52,7 +52,7 @@ const Movies = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid #fff3de;
+  border-bottom: 1px solid #c6ad7b;
 `;
 const MoviesBox = styled.div`
   width: 300px;
@@ -64,6 +64,8 @@ const MoviesBox = styled.div`
   &:hover {
     border-top: 2px solid #0d5776;
   }
+  font-size: 18px;
+  font-weight: 600;
 `;
 const TrailerImg = styled.div<{ bgphoto: string }>`
   background-image: url(${(props) => props.bgphoto});
@@ -75,7 +77,7 @@ const TrailerImg = styled.div<{ bgphoto: string }>`
 
 function TrailerModal() {
   const [movies, setMovies] = useState(
-    "https://www.youtube.com/embed/GjPidZXIuzs"
+    "https://www.youtube.com/embed/_xL2VGg8bXU"
   );
   const navigate = useNavigate();
   const { scrollY } = useViewportScroll();
