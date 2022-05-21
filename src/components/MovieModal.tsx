@@ -65,25 +65,22 @@ const TrailerImg = styled.div<{ bgphoto: string }>`
   background-position: center center;
 `;
 
-function TrailerModal() {
+function MovieModal() {
   const [movies, setMovies] = useState(
     "https://www.youtube.com/embed/_xL2VGg8bXU"
   );
   const navigate = useNavigate();
   const { scrollY } = useViewportScroll();
-  const trailerMatch: PathMatch<string> | null = useMatch("/trailer");
-  console.log(trailerMatch?.pathname);
-  const clicked =
-    trailerMatch?.pathname && "/trailer" === trailerMatch?.pathname;
+  const Match: PathMatch<string> | null = useMatch("/moviemodal/:id");
+  let id: string | undefined = Match?.params.id;
+  console.log(id);
+
   const onOverlayClick = () => {
-    navigate("/");
-  };
-  const ChangeTrailer = (index: number) => {
-    setMovies(trailerDatas.url[index]);
+    navigate("/movie");
   };
   return (
     <>
-      {clicked && (
+      {Match && (
         <AnimatePresence>
           <Overlay
             key={1}
@@ -101,14 +98,6 @@ function TrailerModal() {
               style={{ top: scrollY.get() + 60 }}
             >
               <Iframe src={movies}></Iframe>
-              <Movies>
-                {trailerDatas.back.slice(0, 3).map((val: any, index) => (
-                  <MoviesBox key={index} onClick={() => ChangeTrailer(index)}>
-                    <TrailerImg bgphoto={val}></TrailerImg>
-                    <div>{index + 1}ST TRAILER</div>
-                  </MoviesBox>
-                ))}
-              </Movies>
               <div style={{ height: "30px" }}></div>
             </Contents>
           </ModalWrap>
@@ -117,4 +106,4 @@ function TrailerModal() {
     </>
   );
 }
-export default TrailerModal;
+export default MovieModal;

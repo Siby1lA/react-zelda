@@ -42,24 +42,26 @@ function Nav() {
     <Wrap>
       <BackGround bgphoto={navBack} />
       <Ul>
-        <div>
-          <Link to="/">
+        <Link to="/">
+          <div>
             <Li>TOP</Li>
-          </Link>
-        </div>
-        <div>
-          <Link to="/monster">
+          </div>
+        </Link>
+        <Link to="/monster">
+          <div>
             <Li>MONSTER</Li>
-          </Link>
-        </div>
+          </div>
+        </Link>
+        <Link to="/movie">
+          <div>
+            <Li>MOVIES</Li>
+          </div>
+        </Link>
         <div>
           <Li>WORLD</Li>
         </div>
         <div>
-          <Li>SEARCH</Li>
-        </div>
-        <div>
-          <Li>BACK</Li>
+          <Li>BACKGROUND</Li>
         </div>
       </Ul>
     </Wrap>

@@ -8,15 +8,16 @@ import React from "react";
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+  width: 700px;
   justify-content: center;
   align-items: center;
-  width: 70vw;
   span,
   div {
     color: gray;
   }
 `;
 const Form = styled.form`
+  width: 600px;
   margin-bottom: 10px;
   svg {
     height: 18px;
@@ -24,23 +25,22 @@ const Form = styled.form`
     fill: gray;
   }
   input {
-    width: 50vw;
+    width: 450px;
     height: 30px;
     padding: 15px 0px;
     border: none;
     background-color: white;
-    font-size: 18px;
+    font-size: 16px;
     &:focus {
       outline: none;
     }
   }
 `;
 const FromWrap = styled.div`
-  width: fit-content;
+  justify-content: center;
   padding: 0px 10px;
   height: 60px;
   display: flex;
-  justify-content: center;
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.2);
 `;
@@ -69,6 +69,15 @@ const MonsterImg = styled.div<{ bgphoto: string }>`
   height: 150px;
   background-size: cover;
   background-image: url(${(props) => props.bgphoto});
+  position: relative;
+  div {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 `;
 const Btn = styled.div`
   margin-left: 10px;
@@ -84,6 +93,7 @@ const Btn = styled.div`
   }
 `;
 const Examples = styled.div`
+  width: 605px;
   display: flex;
 `;
 const Example = styled.div`
@@ -95,9 +105,40 @@ const Example = styled.div`
   font-size: 16px;
   cursor: pointer;
 `;
-const ExampleWrap = styled.div`
-  margin-bottom: 10px;
+const ContentWrap = styled.div`
+  width: 605px;
+  display: flex;
 `;
+const MonsterInfo = styled.div``;
+const Location = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+`;
+const ExampleWrap = styled.div`
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d9d9d9;
+`;
+const Descrip = styled.div`
+  margin-left: 20px;
+  font-size: 20px;
+  div {
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+`;
+const LocationBox = styled.div`
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 10px;
+  font-weight: 400;
+`;
+const LocationVal = styled.div``;
 const exampleList1 = [
   "lynel",
   "moblin",
@@ -144,7 +185,7 @@ function Search() {
                 <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z" />
               </svg>
               <input
-                placeholder="moblin..."
+                placeholder="Search..."
                 type="text"
                 value={value}
                 onChange={onChange}
@@ -181,14 +222,23 @@ function Search() {
           </Examples>
         </ExampleWrap>
         {data ? (
-          <>
-            <MonsterImg bgphoto={data?.data.image}></MonsterImg>
-            <div>{data?.data.name}</div>
-            {data?.data.common_locations?.map((val: string) => (
-              <div key={val}>{val}</div>
-            ))}
-            <div>{data?.data.description}</div>
-          </>
+          <ContentWrap>
+            <MonsterInfo>
+              <MonsterImg bgphoto={data?.data.image}>
+                <div>{data?.data.name}</div>
+              </MonsterImg>
+              <Location>
+                <LocationBox>locations</LocationBox>
+                {data?.data.common_locations?.map((val: string) => (
+                  <LocationVal key={val}>{val}</LocationVal>
+                ))}
+              </Location>
+            </MonsterInfo>
+            <Descrip>
+              <div>Description</div>
+              {data?.data.description}
+            </Descrip>
+          </ContentWrap>
         ) : (
           <div>Searching...</div>
         )}

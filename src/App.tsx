@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./Routes/Home";
 import Monster from "./Routes/Monster";
+import Movie from "./Routes/Movie";
 
 function App() {
   return (
@@ -11,7 +12,10 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="trailer" element={<Home />} />
         </Route>
-        <Route path="/monster" element={<Monster />}></Route>
+        <Route path="monster" element={<Monster />} />
+        <Route path="movie" element={<Movie />}>
+          <Route path="moviemodal?q=:id" element={<Movie />} />
+        </Route>
       </Routes>
     </Router>
   );
