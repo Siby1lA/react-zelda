@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "leaflet/dist/leaflet.css";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import { ControlPanel, reducer } from "./Maps/control-panel";
+import { reducer } from "./Maps/control-panel";
 import locationData from "./data/locations";
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -88,7 +88,6 @@ root.render(
     <Provider store={store}>
       <RecoilRoot>
         <QueryClientProvider client={client}>
-          <ControlPanel store={store} />
           <GlobalStyle />
           <App />
         </QueryClientProvider>
