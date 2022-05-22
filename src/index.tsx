@@ -4,6 +4,11 @@ import App from "./App";
 import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
+import "leaflet/dist/leaflet.css";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { ControlPanel, reducer } from "./Maps/control-panel";
+import locationData from "./data/locations";
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -72,13 +77,22 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 const client = new QueryClient();
+const initialState = {
+  activeIconTypes: [],
+  locations: locationData,
+};
+
+let store = createStore(reducer, initialState);
 root.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <QueryClientProvider client={client}>
-        <GlobalStyle />
-        <App />
-      </QueryClientProvider>
-    </RecoilRoot>
+    <Provider store={store}>
+      <RecoilRoot>
+        <QueryClientProvider client={client}>
+          <ControlPanel store={store} />
+          <GlobalStyle />
+          <App />
+        </QueryClientProvider>
+      </RecoilRoot>
+    </Provider>
   </React.StrictMode>
 );

@@ -35,35 +35,6 @@ const Iframe = styled.iframe`
   width: 1000px;
   height: 565px;
 `;
-const Movies = styled.div`
-  width: 1000px;
-  color: #fff3de;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #c6ad7b;
-`;
-const MoviesBox = styled.div`
-  width: 300px;
-  height: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  cursor: pointer;
-  &:hover {
-    border-top: 2px solid #0d5776;
-  }
-  font-size: 18px;
-  font-weight: 600;
-`;
-const TrailerImg = styled.div<{ bgphoto: string }>`
-  background-image: url(${(props) => props.bgphoto});
-  width: 180px;
-  height: 100px;
-  background-size: cover;
-  background-position: center center;
-`;
 
 function MovieModal() {
   const [movies, setMovies] = useState(
@@ -71,10 +42,8 @@ function MovieModal() {
   );
   const navigate = useNavigate();
   const { scrollY } = useViewportScroll();
-  const Match: PathMatch<string> | null = useMatch("/moviemodal/:id");
+  const Match: PathMatch<string> | null = useMatch("movie/moviemodal/:id");
   let id: string | undefined = Match?.params.id;
-  console.log(id);
-
   const onOverlayClick = () => {
     navigate("/movie");
   };
@@ -97,7 +66,7 @@ function MovieModal() {
               transition={{ type: "tween", duration: 1 }}
               style={{ top: scrollY.get() + 60 }}
             >
-              <Iframe src={movies}></Iframe>
+              <Iframe src={trailerDatas.url[Number(id)]}></Iframe>
               <div style={{ height: "30px" }}></div>
             </Contents>
           </ModalWrap>

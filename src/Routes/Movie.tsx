@@ -35,7 +35,7 @@ const HeaderLogo = styled.div`
 
 const Screen = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 `;
 const Movies = styled.div`
@@ -67,6 +67,16 @@ const TrailerImg = styled.div<{ bgphoto: string }>`
   background-position: center center;
   margin-bottom: 5px;
 `;
+const Title = styled.div`
+  font-size: 42px;
+  font-weight: 600;
+  color: #fff3de;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #fff3de;
+  padding-bottom: 10px;
+  text-align: center;
+  width: 180px;
+`;
 function Movie() {
   const navigate = useNavigate();
 
@@ -76,9 +86,7 @@ function Movie() {
   return (
     <Wrap>
       <BackGround
-        bgphoto={
-          "https://c.wallhere.com/photos/dc/fb/The_Legend_of_Zelda_Breath_of_the_Wild_landscape-39054.jpg!d"
-        }
+        bgphoto={"https://pbs.twimg.com/media/Ddkr-pcU0AAqMIl.jpg:large"}
       >
         <HeaderLogo>
           <div>
@@ -87,6 +95,7 @@ function Movie() {
           </div>
         </HeaderLogo>
         <Screen>
+          <Title>MOVIE</Title>
           <Movies>
             {trailerDatas.back.map((val: any, index) => (
               <MoviesBox key={index} onClick={() => onMovieClicked(index)}>

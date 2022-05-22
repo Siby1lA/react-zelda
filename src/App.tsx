@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Home from "./Routes/Home";
 import Monster from "./Routes/Monster";
 import Movie from "./Routes/Movie";
+import World from "./Routes/World";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         </Route>
         <Route path="monster" element={<Monster />} />
         <Route path="movie" element={<Movie />}>
-          <Route path="moviemodal?q=:id" element={<Movie />} />
+          <Route path="moviemodal/:id" element={<Movie />} />
         </Route>
+        <Route path="world" element={<World />} />
       </Routes>
     </Router>
   );

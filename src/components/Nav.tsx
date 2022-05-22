@@ -57,9 +57,11 @@ function Nav() {
             <Li>MOVIES</Li>
           </div>
         </Link>
-        <div>
-          <Li>WORLD</Li>
-        </div>
+        <Link to="/world">
+          <div>
+            <Li>WORLD</Li>
+          </div>
+        </Link>
         <div>
           <Li>BACKGROUND</Li>
         </div>
