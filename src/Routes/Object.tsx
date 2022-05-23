@@ -1,10 +1,11 @@
-import { getMonster } from "../api";
+import { getCategory } from "../api";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import Nav from "../components/Nav";
 import logo_switch from "../Images/logo_switch.png";
 import logo_wiiu from "../Images/logo_wiiu.png";
 import { motion } from "framer-motion";
+import { useState } from "react";
 const Wrap = styled.div``;
 const BackGround = styled.div<{ bgphoto: string }>`
   background-image: url(${(props) => props.bgphoto});
@@ -48,17 +49,38 @@ const Img = styled(motion.div)<{ bgphoto: string }>`
 `;
 const Screen = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
-
-function Monster() {
-  const { data: Monster, isLoading: Ml } = useQuery<any>(
-    "monsters",
-    getMonster
+const SelectCategory = styled.div`
+  width: 1000px;
+`;
+const Ul = styled.ul`
+  display: flex;
+  background-color: #fff3de;
+`;
+const Li = styled.li`
+  margin: 0px 10px;
+  font-size: 24px;
+  cursor: pointer;
+`;
+const vlaues = ["Monsters", "Creatures", "Equipment", "Materials", "Treasure"];
+//Creatures Object diff
+function Object() {
+  const [value, setValue] = useState("monsters");
+  const [food, setFood] = useState(true);
+  const { data, isLoading } = useQuery<any>(
+    value ? ["category", value] : "",
+    () => value && getCategory(value ? value : "")
   );
+  const onList = (val: string) => {
+    if (val === "Creatures") setFood(false);
+    else setFood(true);
+    setValue(val.toLowerCase());
+  };
   return (
     <>
-      {Ml ? (
+      {isLoading ? (
         <div style={{ color: "whitesmoke" }}>Loading...</div>
       ) : (
         <>
@@ -75,13 +97,29 @@ function Monster() {
                 </div>
               </HeaderLogo>
               <Screen>
+                <SelectCategory>
+                  <Ul>
+                    {vlaues.map((value: string) => (
+                      <Li key={value} onClick={() => onList(value)}>
+                        {value}
+                      </Li>
+                    ))}
+                  </Ul>
+                </SelectCategory>
                 <Contents>
-                  {Monster.data.map((monster: any) => (
-                    <div key={monster.id}>
-                      {monster.name}
-                      <Img bgphoto={monster.image}></Img>
-                    </div>
-                  ))}
+                  {food
+                    ? data.data.map((monster: any) => (
+                        <div key={monster.id}>
+                          {monster.name}
+                          <Img bgphoto={monster.image}></Img>
+                        </div>
+                      ))
+                    : data.data.food.map((monster: any) => (
+                        <div key={monster.id}>
+                          {monster.name}
+                          <Img bgphoto={monster.image}></Img>
+                        </div>
+                      ))}
                 </Contents>
               </Screen>
             </BackGround>
@@ -92,4 +130,4 @@ function Monster() {
     </>
   );
 }
-export default Monster;
+export default Object;

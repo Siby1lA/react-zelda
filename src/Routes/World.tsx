@@ -12,7 +12,9 @@ const initialState = {
 };
 
 let store = createStore(reducer, initialState);
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  z-index: 0;
+`;
 function World() {
   const maxBounds: any = [
     [0, -176.59],
@@ -27,7 +29,7 @@ function World() {
       <Provider store={store}>
         <Nav />
         <MapContainer
-          style={{ width: "100%", height: "91vh" }}
+          style={{ width: "100%", height: "91vh", zIndex: "0" }}
           maxBounds={maxBounds}
           center={position}
           zoom={4}
@@ -35,7 +37,7 @@ function World() {
         >
           <TileLayer
             minZoom={3}
-            maxZoom={6}
+            maxZoom={9}
             url="/images/tiles/{z}/{x}/{y}.png"
           />
           <MapIconsContainer />

@@ -2,13 +2,13 @@ import { useState } from "react";
 import styled from "styled-components";
 import Search from "./Search";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 const Overlay = styled(motion.div)`
   position: fixed;
-  z-index: 1;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
   /* opacity: 0; */
 `;
 const Searchwrap = styled(motion.div)`

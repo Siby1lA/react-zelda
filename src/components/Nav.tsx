@@ -47,9 +47,9 @@ function Nav() {
             <Li>TOP</Li>
           </div>
         </Link>
-        <Link to="/monster">
+        <Link to="/object">
           <div>
-            <Li>MONSTER</Li>
+            <Li>OBJECT</Li>
           </div>
         </Link>
         <Link to="/movie">

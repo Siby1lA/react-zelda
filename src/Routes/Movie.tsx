@@ -1,5 +1,3 @@
-import { getMonster } from "../api";
-import { useQuery } from "react-query";
 import styled from "styled-components";
 import Nav from "../components/Nav";
 import logo_switch from "../Images/logo_switch.png";

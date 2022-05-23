@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./Routes/Home";
-import Monster from "./Routes/Monster";
+import Object from "./Routes/Object";
 import Movie from "./Routes/Movie";
 import World from "./Routes/World";
 
@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="trailer" element={<Home />} />
         </Route>
-        <Route path="monster" element={<Monster />} />
+        <Route path="object" element={<Object />} />
         <Route path="movie" element={<Movie />}>
           <Route path="moviemodal/:id" element={<Movie />} />
         </Route>

@@ -1,7 +1,7 @@
 const BASE_PATH = "https://botw-compendium.herokuapp.com/api/v2";
 
-export function getMonster() {
-  return fetch(`${BASE_PATH}/category/monsters`).then((response) =>
+export function getCategory(category: string) {
+  return fetch(`${BASE_PATH}/category/${category}`).then((response) =>
     response.json()
   );
 }
