@@ -38,7 +38,7 @@ function World() {
           <TileLayer
             minZoom={3}
             maxZoom={9}
-            url="/images/tiles/{z}/{x}/{y}.png"
+            url="images/tiles/{z}/{x}/{y}.png"
           />
           <MapIconsContainer />
           <ControlPanel store={store} />

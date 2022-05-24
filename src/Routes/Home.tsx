@@ -84,7 +84,7 @@ function Home() {
                 loop
                 muted
                 playsInline
-                src="/videos/trailer.mp4"
+                src="videos/trailer.mp4"
               ></video>
               <TrailerLogo>
                 <span>Trailer</span>
