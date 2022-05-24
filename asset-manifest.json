@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-zelda/static/css/main.f6614ce7.css",
-    "main.js": "/react-zelda/static/js/main.97f5184d.js",
+    "main.js": "/react-zelda/static/js/main.d583a75b.js",
     "static/media/navback.png": "/react-zelda/static/media/navback.51deeac7269360e1ed7c.png",
     "index.html": "/react-zelda/index.html",
     "main.f6614ce7.css.map": "/react-zelda/static/css/main.f6614ce7.css.map",
-    "main.97f5184d.js.map": "/react-zelda/static/js/main.97f5184d.js.map"
+    "main.d583a75b.js.map": "/react-zelda/static/js/main.d583a75b.js.map"
   },
   "entrypoints": [
     "static/css/main.f6614ce7.css",
-    "static/js/main.97f5184d.js"
+    "static/js/main.d583a75b.js"
   ]
 }
